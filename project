@@ -1,0 +1,42 @@
+#!/bin/bash
+
+source "$(dirname "$(realpath "${BASH_SOURCE[0]}") ")/CheckDBFile"
+
+# TODO: logging function
+
+main_loop()
+{
+  checkfile || log "No access to DB file"
+
+  local -A choices
+  local -i choice_nr
+  local choice PS3
+
+  choices=(
+    [Add a record]=recordAdd                 # 1. TODO
+    [Delete a record]=recordDelete           # 2. TODO
+    [Search by name]=recordSearch            # 3. TODO
+    [Update name]=recordUpdateName           # 4. TODO
+    [Update amount]=recordUpdateAmt          # 5. TODO
+    [List records (summery)]=recordListTotal # 6. TODO
+    [List records (sorted)]=recordListSort   # 7. TODO
+    [exit]=exit
+  )
+
+  printf -v PS3 "\x1b[32;1m%s\x1b[m: " "Select an action"
+
+  select choice in "${!choices[@]}"; do
+    if
+      (( choice_nr=REPLY, choice_nr == 0 || choice_nr > ${#choices[@]} ))
+    then
+      echo "Invalid choice" >&2
+      continue
+
+    else
+      "${choices[$choice]}"
+
+    fi
+  done
+}
+
+main_loop "$@"
