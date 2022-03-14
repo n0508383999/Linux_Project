@@ -1,0 +1,19 @@
+#! /bin/bash                                                                   
+
+checkfile ()
+{
+  file=${1:-~/Desktop/recordFileName.txt};
+if [[ $file == /Desktop/recordFileName.txt ]]
+then
+echo "Using default $file"
+fi
+         if !   [[ -f "$file" ]]
+        then
+         touch "$file";
+         echo "created new file $file";
+
+fi
+echo $file
+}
+checkfile $1
+
