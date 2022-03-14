@@ -1,19 +1,19 @@
-#! /bin/bash                                                                   
+#! /bin/bash
 
 checkfile ()
 {
-  file=${1:-~/Desktop/recordFileName.txt};
-if [[ $file == /Desktop/recordFileName.txt ]]
-then
-echo "Using default $file"
-fi
-         if !   [[ -f "$file" ]]
-        then
-         touch "$file";
-         echo "created new file $file";
+  local default=~/Desktop/recordFileName.txt
+  declare -g file=${1:-$default}
 
-fi
-echo $file
+  if [[ $file == $default ]]; then
+    echo "Using default $file" >&2
+  fi
+
+  if ! [[ -f $file ]]; then
+    echo "Creating new file $file" >&2
+    touch "$file"
+  fi
+
+  # return exit code checking if the file is accessible
+  [[ -w $file && -r $file ]]
 }
-checkfile $1
-
