@@ -69,7 +69,7 @@ function uiRecordDelete
 {
   local -i rec_to_sub; rec_to_sub=$1
   local    rec_name; rec_name=$2
-  shift 2;
+  shift 2 || :;
 
   if (( $# )); then
     echo "Too many arguments" >&2
@@ -77,7 +77,7 @@ function uiRecordDelete
   fi
 
 	log "function begins"
-	trap 'log "returning"' return
+	trap 'log "returning"'          return
   trap 'echo; trap - int; return' int
   echo "==== Delete record ===="
 
@@ -99,9 +99,10 @@ function uiRecordDelete
 		line_records[$((rec_linenr-1))]=$count
 	done < "$file" ; IFS=$OFS	
 
-	(( total_records - rec_to_sub < 0 )) || return 1  # asking to reduce by more than you have
 
 	local -i total_records=$(( 0${line_records[*]/#/+} ))
+	(( total_records >= rec_to_sub )) || return 1  # asking to reduce by more than you have
+
 	local -a line_keys=( "${!line_records[@]}" )
 	#  TODO: sort line_keys
 	local -i i=0 val_in_rec
