@@ -1,5 +1,10 @@
 # Linux_Project
 
+## Variables
+
+  * `$file` - the DB currently in use
+  * `$record_Name` - record name selected by the user
+
 ## UI Functions
 
   * 1 uiRecordAdd(name, count)
@@ -12,7 +17,6 @@
 
 ## Functions
 
+  * `checkfile` - checks the database
   * 8: log(msg)
-
-  * promptSelectSingleRecord
-  * recordUpdateCount(recordnr, count)
+  * choice_search(name) -> record_Name
