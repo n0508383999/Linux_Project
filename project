@@ -4,24 +4,23 @@ main_loop()
 {
   checkfile || log "No access to DB file"
 
-  local -A choices
+  local -a choices
   local -i choice_nr
-  local choice PS3
+  local choice PS3 OFS IFS; OFS=$IFS IFS=$'\n'
 
   choices=(
-    [TODO: Add a record]=uiRecordAdd                 # 1. TODO
-    [Delete a record]=uiRecordDelete
-    [TODO: Search by name]=uiRecordSearch            # 3. TODO
-    [TODO: Update name]=uiRecordUpdateName           # 4. TODO
-    [TODO: Update amount]=uiRecordUpdateAmt          # 5. TODO
-    [TODO: List records (summery)]=uiRecordListTotal # 6. TODO
-    [TODO: List records (sorted)]=uiRecordListSort   # 7. TODO
-    [exit]=exit
+    "TODO: Add a record"
+    "Delete a record"
+    "TODO: Search by name"
+    "TODO: Update name"
+    "TODO: Update amount"
+    "TODO: List records (summery)"
+    "TODO: List records (sorted)"
+    "exit"
   )
 
   printf -v PS3 "\x1b[32;1m%s\x1b[m: " "Select an action"
-
-  select choice in "${!choices[@]}"; do
+  select choice in "${choices[@]}"; do
     if
       (( choice_nr=REPLY, choice_nr == 0 || choice_nr > ${#choices[@]} ))
     then
@@ -29,8 +28,29 @@ main_loop()
       continue
 
     else
-      "${choices[$choice]}"
-
+      case "$choice" in
+        "TODO: Add a record")
+          ;;
+        "Delete a record")
+          uiRecordDelete
+          ;;
+        "TODO: Search by name")
+          ;;
+        "TODO: Update name")
+          ;;
+        "TODO: Update amount")
+          ;;
+        "TODO: List records (summery)")
+          ;;
+        "TODO: List records (sorted)")
+          ;;
+        "exit")
+          exit
+          ;;
+        *)
+          log "invalid choice allowed" && exit 1
+          ;;
+      esac
     fi
   done
 }
