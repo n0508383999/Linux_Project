@@ -9,13 +9,13 @@ main_loop()
   local choice PS3
 
   choices=(
-    [Add a record]=uiRecordAdd                 # 1. TODO
-    [Delete a record]=uiRecordDelete           # 2. TODO
-    [Search by name]=uiRecordSearch            # 3. TODO
-    [Update name]=uiRecordUpdateName           # 4. TODO
-    [Update amount]=uiRecordUpdateAmt          # 5. TODO
-    [List records (summery)]=uiRecordListTotal # 6. TODO
-    [List records (sorted)]=uiRecordListSort   # 7. TODO
+    [TODO: Add a record]=uiRecordAdd                 # 1. TODO
+    [Delete a record]=uiRecordDelete
+    [TODO: Search by name]=uiRecordSearch            # 3. TODO
+    [TODO: Update name]=uiRecordUpdateName           # 4. TODO
+    [TODO: Update amount]=uiRecordUpdateAmt          # 5. TODO
+    [TODO: List records (summery)]=uiRecordListTotal # 6. TODO
+    [TODO: List records (sorted)]=uiRecordListSort   # 7. TODO
     [exit]=exit
   )
 
@@ -35,5 +35,8 @@ main_loop()
   done
 }
 
-source "$(dirname "$(realpath "${BASH_SOURCE[0]}") ")/lib"/*
+lib=$(dirname "$(realpath "${BASH_SOURCE[0]}") ")/lib
+source "${lib}/db_check"
+source "${lib}/add_rec"
+source "${lib}/del_rec"
 main_loop "$@"
