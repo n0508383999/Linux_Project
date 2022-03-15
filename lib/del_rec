@@ -1,0 +1,75 @@
+function uiRecordDelete
+{
+  local -i rec_to_sub; rec_to_sub=$1
+  local    rec_name; rec_name=$2
+  shift 2 || :;
+
+  if (( $# )); then
+    echo "Too many arguments" >&2
+    return 1
+  fi
+
+	log "function begins"
+	trap 'log "returning"'          return
+  trap 'echo; trap - int; return' int
+  echo "==== Delete record ===="
+
+  if
+    [[ -z $rec_name    ]] && read -rp $'\x1b[32mRecord Name\x1b[m:' rec_name
+    [[ -z $rec_to_subb ]] && read -rp $'\x1b[32mQuantity\x1b[m:'    rec_to_sub
+    ! { (( rec_to_sub > 0 )) && search_name "$rec_name"; }
+  then
+		return
+	fi
+
+	local -A line_records
+	local -i rec_linenr=1
+
+	local OFS IFS; OFS=$IFS IFS=,
+	while read -r name count; do
+		(( rec_linenr++ ))
+		[[ $name == "$user_choice_search" ]] || continue
+		line_records[$((rec_linenr-1))]=$count
+	done < "$file" ; IFS=$OFS	
+
+
+	local -i total_records=$(( 0${line_records[*]/#/+} ))
+	(( total_records >= rec_to_sub )) || return 1  # asking to reduce by more than you have
+
+	local -a line_keys=( "${!line_records[@]}" )
+	#  TODO: sort line_keys
+	local -i i=0 val_in_rec
+	local sed_expr
+
+	while
+		[[ -z ${line_records[${line_keys[i]}]} ]] && exit 1
+		(( rec_to_sub >= 0 ))
+	do
+		if
+			(( (val_in_rec = line_records[${line_keys[i]}] - rec_to_sub) <= 0 )) &&
+			echo "val_in_rec: $val_in_rec"
+
+		then
+			echo "val_in_rec: $val_in_rec"
+			sed_expr+="${line_keys[i]}d;"
+			(( rec_to_sub -= line_records[${line_keys[i]}] ))
+
+		else
+			sed_expr+="${line_keys[i]}{s/,[^,]*$/,$(( val_in_rec ))/;}"
+			break
+
+		fi
+		(( i++ ))
+	done
+
+	echo "$sed_expr"
+	if read -rn1 -p $'\x1b[31mAre you sure you want to continue\x1b[m: (yN)' && [[ ${REPLY,,} == y ]]; then
+		if sed -i "$sed_expr" "$file"
+		then log "subtracted $rec_to_sub from record '$rec_name'"
+		else log "FAILED subtracting $rec_to_sub from record '$rec_name'"
+		fi
+	fi
+	
+	echo
+}
+

@@ -27,16 +27,17 @@ user_choice_search=$records
 
 }
 
-#######################################Add Records####################################
-
-read -p "Please Enter Record Name to Add: "  add_record
-search_name $add_record
-
-echo -n "the amount we have from \"$user_choice_search\" is :" ; cat  recordFileName.txt | grep "$user_choice_search" | cut -f2 -d ","
-#grep "$user_choice_search" recordFileName.txt 
-#echo $user_choice_search
-
-#find line of the user chois in data file
+# TODO: write as function
+# #######################################Add Records####################################
+# 
+# read -p "Please Enter Record Name to Add: "  add_record
+# search_name $add_record
+# 
+# echo -n "the amount we have from \"$user_choice_search\" is :" ; cat  recordFileName.txt | grep "$user_choice_search" | cut -f2 -d ","
+# #grep "$user_choice_search" recordFileName.txt 
+# #echo $user_choice_search
+# 
+# #find line of the user chois in data file
 
 
 
