@@ -1,44 +1,44 @@
-michael jackson 5
-50 Cent 3
-A Thousand Horses 1
-ABBA 12
-ABC 32
-Aerosmith 92
-Agnetha Fältskog 78
-Alan Jackson 13
-Albert King 6
-Alice Cooole 71
-Nazareth 23
-Ne-Yo 83
-Neil Diamond 48
-Herb 4
-Pearl Jam 23
-DAngelo 8
-DMX 54
-The Damned 444
-Weezer 1
-Wes Montgomery 65
-Wet Wet Wet 53
-will.i.am 32
-Whitesnake 51
-The Who 12
-William Orbit 2
-Willie Nelson 75
-Wilson Pickett 22
-Peggy Lee 3
-Pete Townshend 7
-Peter Frampton 2
-Phil Collins 2
-Phil Manzanera 545
-PiL (Public Image Ltd) 43
-Pink Floyd 2
-Placebo 3
-Poco 3
-Poison 67
-Neil Young 7
-Nelly 1 
-Neneh Cherry 6
-New Edition 3
-New York Dolls 12
-Nick Drake 45
-Nicki Minaj 4
+michael jackson,5
+50 Cent,3
+A Thousand Horses,1
+ABBA,12
+ABC,32
+Aerosmith,92
+Agnetha Fältskog,78
+Alan Jackson,13
+Albert King,6
+Alice Cooole,71
+Nazareth,23
+Ne-Yo,83
+Neil Diamond,48
+Herb,4
+Pearl Jam,23
+DAngelo,8
+DMX,54
+The Damned,444
+Weezer,1
+Wes Montgomery,65
+Wet Wet Wet,53
+will.i.am,32
+Whitesnake,51
+The Who,12
+William Orbit,2
+Willie Nelson,75
+Wilson Pickett,22
+Peggy Lee,3
+Pete Townshend,7
+Peter Frampton,2
+Phil Collins,2
+Phil Manzanera,545
+PiL (Public Image Ltd),43
+Pink Floyd,2
+Placebo,3
+Poco,3
+Poison,67
+Neil Young,7
+Nelly,1 
+Neneh Cherry,6
+New Edition,3
+New York Dolls,12
+Nick Drake,45
+Nicki Minaj,4
