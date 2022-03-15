@@ -45,7 +45,7 @@ search_name ()
 	declare -g user_choice_search=''
 	IFS=,
 
-	allnames=$(grep -i "$1" "$file" | cut -f1 -d "," | sort -u | tr "\n" ",")
+	allnames=$(cut -f1 -d "," "$file" | grep -i "$1" | sort -u | tr "\n" ",")
 
 	if [[ -z $allnames ]]
 	then
