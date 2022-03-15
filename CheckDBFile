@@ -2,7 +2,8 @@
 
 checkfile ()
 {
-  local default=~/Desktop/recordFileName.txt
+  local default
+  default="$(dirname "$(realpath "${BASH_SOURCE[0]}") ")/RecordsFileName.txt"
   declare -g file=${1:-$default}
 
   if [[ $file == $default ]]; then
