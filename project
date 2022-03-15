@@ -55,8 +55,8 @@ main_loop()
   done
 }
 
-lib=$(dirname "$(realpath "${BASH_SOURCE[0]}") ")/lib
-source "${lib}/db_check"
-source "${lib}/add_rec"
-source "${lib}/del_rec"
+script_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}") ")
+source "${script_dir}/lib/db_check"
+source "${script_dir}/lib/add_rec"
+source "${script_dir}/lib/del_rec"
 main_loop "$@"

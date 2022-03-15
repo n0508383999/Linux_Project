@@ -3,7 +3,7 @@
 checkfile ()
 {
   local default
-  default="$(dirname "$(realpath "${BASH_SOURCE[0]}") ")/RecordsFileName.txt"
+  default="${script_dir}/RecordsFileName.txt"
   declare -g file=${1:-$default}
 
   if [[ $file == $default ]]; then
