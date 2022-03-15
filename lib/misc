@@ -1,0 +1,19 @@
+function uiSearchFor
+{
+  local -i ret
+  local    search
+
+  read -rp "Search for: " search || return
+
+  if
+    search_name "$search" || ret=$?
+    (( ret == 10 || ret == 1 ))
+
+  then
+    echo "Record doesn't exist"
+    return
+
+  fi
+
+  awk -F, -v query=$user_choice_search '$1 ~ query { print $1, $2 } ' "$file"
+}

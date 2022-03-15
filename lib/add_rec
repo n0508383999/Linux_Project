@@ -4,9 +4,9 @@
 
 search_name ()
 {
-  local allnames
+  local allnames PS3 IFS
   allnames=$(cut "$file" -d, -f1 | grep -i "$1" | tr $'\n' , )
-  local IFS=","
+  IFS=","
 
   if [[ -z $allnames ]]; then
     echo "the record does not exist"

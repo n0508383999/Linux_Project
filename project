@@ -29,28 +29,15 @@ main_loop()
 
     else
       case "$choice" in
-        "TODO: Add a record")
-          ;;
-        "Delete a record")
-          uiRecordDelete
-          ;;
-        "Search by name")
-          search_name "$(read -rp "Search for: " && echo "$REPLY")"
-          ;;
-        "TODO: Update name")
-          ;;
-        "TODO: Update amount")
-          ;;
-        "TODO: List records (summery)")
-          ;;
-        "TODO: List records (sorted)")
-          ;;
-        "exit")
-          exit
-          ;;
-        *)
-          log "invalid choice allowed" && exit 1
-          ;;
+        "TODO: Add a record") ;;
+        "Delete a record") uiRecordDelete ;;
+        "Search by name") uiSearchFor ;;
+        "TODO: Update name") ;;
+        "TODO: Update amount") ;;
+        "TODO: List records (summery)") ;;
+        "TODO: List records (sorted)") ;;
+        "exit") exit ;;
+        *) log "invalid choice allowed"; exit 1 ;;
       esac
     fi
   done
@@ -60,4 +47,5 @@ script_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}") ")
 source "${script_dir}/lib/db_check"
 source "${script_dir}/lib/add_rec"
 source "${script_dir}/lib/del_rec"
+source "${script_dir}/lib/misc"
 main_loop "$@"
