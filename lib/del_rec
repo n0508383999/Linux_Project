@@ -1,3 +1,5 @@
+#! /bin/bash
+
 function uiRecordDelete
 {
   local -i rec_to_sub; rec_to_sub=$1

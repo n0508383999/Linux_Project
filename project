@@ -11,7 +11,7 @@ main_loop()
   choices=(
     "TODO: Add a record"
     "Delete a record"
-    "TODO: Search by name"
+    "Search by name"
     "TODO: Update name"
     "TODO: Update amount"
     "TODO: List records (summery)"
@@ -22,7 +22,7 @@ main_loop()
   printf -v PS3 "\x1b[32;1m%s\x1b[m: " "Select an action"
   select choice in "${choices[@]}"; do
     if
-      (( choice_nr=REPLY, choice_nr == 0 || choice_nr > ${#choices[@]} ))
+      (( choice_nr=0${REPLY//[^[:digit:]]/}, choice_nr == 0 || choice_nr > ${#choices[@]} ))
     then
       echo "Invalid choice" >&2
       continue
@@ -34,7 +34,8 @@ main_loop()
         "Delete a record")
           uiRecordDelete
           ;;
-        "TODO: Search by name")
+        "Search by name")
+          search_name "$(read -rp "Search for: " && echo "$REPLY")"
           ;;
         "TODO: Update name")
           ;;
